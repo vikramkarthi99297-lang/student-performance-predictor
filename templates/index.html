@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Student Performance Prediction
+    </title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVIGATION BAR
+===================================================== -->
+
+<nav class="navbar">
+
+    <div class="logo">
+        StudentAI
+    </div>
+
+    <div class="nav-title">
+        Student Performance Prediction
+    </div>
+
+</nav>
+
+
+
+<!-- =====================================================
+     MAIN CONTAINER
+===================================================== -->
+
+<div class="container">
+
+
+    <!-- =================================================
+         HEADER
+    ================================================== -->
+
+    <div class="hero">
+
+        <h1>
+            Student Performance Prediction
+        </h1>
+
+        <p>
+            Enter student academic details and use
+            Machine Learning to predict performance.
+        </p>
+
+    </div>
+
+
+
+    <!-- =================================================
+         MAIN CARD
+    ================================================== -->
+
+    <div class="main-card">
+
+
+        <!-- =============================================
+             FORM SECTION
+        ============================================== -->
+
+        <div class="form-section">
+
+            <h2>
+                Enter Student Details
+            </h2>
+
+            <p class="description">
+                Please enter the student's academic
+                information below.
+            </p>
+
+
+            <form id="predictionForm">
+
+
+                <!-- Attendance -->
+
+                <div class="input-group">
+
+                    <label for="attendance">
+                        Attendance (%)
+                    </label>
+
+                    <input
+                        type="number"
+                        id="attendance"
+                        name="attendance"
+                        min="0"
+                        max="100"
+                        placeholder="Example: 85"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- Internal Marks -->
+
+                <div class="input-group">
+
+                    <label for="internal_marks">
+                        Internal Marks
+                    </label>
+
+                    <input
+                        type="number"
+                        id="internal_marks"
+                        name="internal_marks"
+                        min="0"
+                        max="100"
+                        placeholder="Example: 78"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- Assignment Marks -->
+
+                <div class="input-group">
+
+                    <label for="assignment_marks">
+                        Assignment Marks
+                    </label>
+
+                    <input
+                        type="number"
+                        id="assignment_marks"
+                        name="assignment_marks"
+                        min="0"
+                        max="100"
+                        placeholder="Example: 82"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- Previous Marks -->
+
+                <div class="input-group">
+
+                    <label for="previous_marks">
+                        Previous Semester Marks
+                    </label>
+
+                    <input
+                        type="number"
+                        id="previous_marks"
+                        name="previous_marks"
+                        min="0"
+                        max="100"
+                        placeholder="Example: 75"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- Study Hours -->
+
+                <div class="input-group">
+
+                    <label for="study_hours">
+                        Study Hours Per Day
+                    </label>
+
+                    <input
+                        type="number"
+                        id="study_hours"
+                        name="study_hours"
+                        min="0"
+                        max="24"
+                        step="0.5"
+                        placeholder="Example: 3"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- Buttons -->
+
+                <div class="button-container">
+
+                    <button
+                        type="submit"
+                        id="predictButton"
+                        class="predict-button"
+                    >
+
+                        Predict Performance
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        id="clearButton"
+                        class="clear-button"
+                    >
+
+                        Clear
+
+                    </button>
+
+                </div>
+
+
+            </form>
+
+        </div>
+
+
+
+        <!-- =============================================
+             RESULT SECTION
+        ============================================== -->
+
+        <div class="result-section">
+
+
+            <div class="result-icon">
+                📊
+            </div>
+
+
+            <h2>
+                Prediction Result
+            </h2>
+
+
+            <p class="result-description">
+                Your prediction will appear here.
+            </p>
+
+
+            <!-- Result -->
+
+            <div
+                id="resultBox"
+                class="result-box"
+            >
+
+                <div
+                    id="resultText"
+                    class="result-text"
+                >
+                    Waiting for prediction...
+                </div>
+
+            </div>
+
+
+
+            <!-- Probability -->
+
+            <div
+                id="probabilitySection"
+                class="probability-section"
+            >
+
+                <h3>
+                    Prediction Probability
+                </h3>
+
+
+                <div class="probability-row">
+
+                    <span>
+                        Pass
+                    </span>
+
+                    <span
+                        id="passProbability"
+                    >
+                        0%
+                    </span>
+
+                </div>
+
+
+                <div class="progress-container">
+
+                    <div
+                        id="passProgress"
+                        class="progress-bar"
+                    ></div>
+
+                </div>
+
+
+
+                <div class="probability-row">
+
+                    <span>
+                        Fail
+                    </span>
+
+                    <span
+                        id="failProbability"
+                    >
+                        0%
+                    </span>
+
+                </div>
+
+
+                <div class="progress-container">
+
+                    <div
+                        id="failProgress"
+                        class="progress-bar"
+                    ></div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Accuracy -->
+
+            <div class="accuracy-box">
+
+                <span>
+                    Model Accuracy
+                </span>
+
+                <strong>
+                    {{ accuracy }}%
+                </strong>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =================================================
+         INFORMATION CARDS
+    ================================================== -->
+
+    <div class="info-section">
+
+
+        <div class="info-card">
+
+            <div class="info-icon">
+                🤖
+            </div>
+
+            <h3>
+                Machine Learning
+            </h3>
+
+            <p>
+                Decision Tree Classification is used
+                to predict student performance.
+            </p>
+
+        </div>
+
+
+
+        <div class="info-card">
+
+            <div class="info-icon">
+                📚
+            </div>
+
+            <h3>
+                Student Data
+            </h3>
+
+            <p>
+                Attendance, marks and study hours are
+                used as input features.
+            </p>
+
+        </div>
+
+
+
+        <div class="info-card">
+
+            <div class="info-icon">
+                📈
+            </div>
+
+            <h3>
+                Prediction
+            </h3>
+
+            <p>
+                The system predicts whether the student
+                is likely to Pass or Fail.
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =================================================
+         FOOTER
+    ================================================== -->
+
+    <footer>
+
+        <p>
+            Student Performance Prediction Using
+            Machine Learning
+        </p>
+
+        <p>
+            Developed using Python Flask & Machine Learning
+        </p>
+
+    </footer>
+
+
+</div>
+
+
+
+<script
+    src="{{ url_for('static', filename='script.js') }}">
+</script>
+
+
+</body>
+
+</html>
