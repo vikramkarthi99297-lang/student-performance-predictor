@@ -10,7 +10,7 @@
           content="width=device-width, initial-scale=1.0">
 
     <title>
-        Student Performance Prediction
+        Student Dashboard
     </title>
 
     <link rel="stylesheet"
@@ -22,22 +22,21 @@
 <body>
 
 
-<!-- NAVBAR -->
-
 <nav class="navbar">
 
     <div class="logo">
         StudentAI
     </div>
 
-    <div class="nav-links">
 
-        <a href="/">
-            Prediction
-        </a>
+    <div class="nav-user">
 
-        <a href="/records">
-            Student Records
+        <span>
+            👤 {{ name }}
+        </span>
+
+        <a href="/logout">
+            Logout
         </a>
 
     </div>
@@ -46,33 +45,22 @@
 
 
 
-<!-- MAIN -->
-
 <div class="container">
 
 
-    <!-- HERO -->
-
-    <div class="hero">
-
-        <div class="hero-icon">
-            🎓
-        </div>
+    <div class="dashboard-welcome">
 
         <h1>
-            Student Performance Prediction
+            Welcome, {{ name }} 👋
         </h1>
 
         <p>
-            Predict student academic performance
-            using Machine Learning.
+            {{ college }}
         </p>
 
     </div>
 
 
-
-    <!-- MAIN CARD -->
 
     <div class="main-card">
 
@@ -82,18 +70,19 @@
         <div class="form-section">
 
             <h2>
-                Student Information
+                Student Performance Prediction
             </h2>
 
             <p class="description">
-                Enter the student's academic details.
+
+                Enter the student academic details
+                to predict performance.
+
             </p>
 
 
             <form id="predictionForm">
 
-
-                <!-- Student Name -->
 
                 <div class="input-group">
 
@@ -104,16 +93,11 @@
                     <input
                         type="text"
                         name="student_name"
-                        id="student_name"
-                        placeholder="Enter student name"
                         required
                     >
 
                 </div>
 
-
-
-                <!-- Attendance -->
 
                 <div class="input-group">
 
@@ -124,18 +108,13 @@
                     <input
                         type="number"
                         name="attendance"
-                        id="attendance"
                         min="0"
                         max="100"
-                        placeholder="Example: 85"
                         required
                     >
 
                 </div>
 
-
-
-                <!-- Internal -->
 
                 <div class="input-group">
 
@@ -146,18 +125,13 @@
                     <input
                         type="number"
                         name="internal_marks"
-                        id="internal_marks"
                         min="0"
                         max="100"
-                        placeholder="Example: 78"
                         required
                     >
 
                 </div>
 
-
-
-                <!-- Assignment -->
 
                 <div class="input-group">
 
@@ -168,18 +142,13 @@
                     <input
                         type="number"
                         name="assignment_marks"
-                        id="assignment_marks"
                         min="0"
                         max="100"
-                        placeholder="Example: 82"
                         required
                     >
 
                 </div>
 
-
-
-                <!-- Previous -->
 
                 <div class="input-group">
 
@@ -190,18 +159,13 @@
                     <input
                         type="number"
                         name="previous_marks"
-                        id="previous_marks"
                         min="0"
                         max="100"
-                        placeholder="Example: 75"
                         required
                     >
 
                 </div>
 
-
-
-                <!-- Study -->
 
                 <div class="input-group">
 
@@ -212,19 +176,14 @@
                     <input
                         type="number"
                         name="study_hours"
-                        id="study_hours"
                         min="0"
                         max="24"
                         step="0.5"
-                        placeholder="Example: 3"
                         required
                     >
 
                 </div>
 
-
-
-                <!-- BUTTONS -->
 
                 <div class="button-container">
 
@@ -266,9 +225,11 @@
                 📊
             </div>
 
+
             <h2>
                 Prediction Result
             </h2>
+
 
             <p id="studentResult">
                 Enter details and click predict.
@@ -281,14 +242,13 @@
                     id="resultText"
                     class="result-text"
                 >
+
                     Waiting...
+
                 </div>
 
             </div>
 
-
-
-            <!-- PROBABILITY -->
 
             <div class="probability-section">
 
@@ -320,7 +280,6 @@
                 </div>
 
 
-
                 <div class="probability-row">
 
                     <span>
@@ -346,9 +305,6 @@
             </div>
 
 
-
-            <!-- ACCURACY -->
-
             <div class="accuracy-box">
 
                 <span>
@@ -364,88 +320,6 @@
         </div>
 
     </div>
-
-
-
-    <!-- INFO CARDS -->
-
-    <div class="info-section">
-
-
-        <div class="info-card">
-
-            <div class="info-icon">
-                🤖
-            </div>
-
-            <h3>
-                Machine Learning
-            </h3>
-
-            <p>
-                Decision Tree algorithm predicts
-                student performance.
-            </p>
-
-        </div>
-
-
-
-        <div class="info-card">
-
-            <div class="info-icon">
-                🗄️
-            </div>
-
-            <h3>
-                MySQL Database
-            </h3>
-
-            <p>
-                Student details and predictions
-                are stored securely.
-            </p>
-
-        </div>
-
-
-
-        <div class="info-card">
-
-            <div class="info-icon">
-                📈
-            </div>
-
-            <h3>
-                Performance
-            </h3>
-
-            <p>
-                The system predicts Pass or Fail
-                based on student data.
-            </p>
-
-        </div>
-
-
-    </div>
-
-
-
-    <!-- FOOTER -->
-
-    <footer>
-
-        <p>
-            Student Performance Prediction
-            Using Machine Learning
-        </p>
-
-        <p>
-            HTML • CSS • JavaScript • Flask • MySQL • Scikit-learn
-        </p>
-
-    </footer>
 
 
 </div>

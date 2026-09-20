@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Login - StudentAI
+    </title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+
+<body class="auth-body">
+
+
+<div class="auth-container">
+
+
+    <div class="auth-card">
+
+
+        <div class="auth-logo">
+            🎓
+        </div>
+
+
+        <h1>
+            Welcome Back
+        </h1>
+
+
+        <p class="auth-subtitle">
+            Login to Student Performance Prediction
+        </p>
+
+
+        {% if error %}
+
+        <div class="error-message">
+
+            {{ error }}
+
+        </div>
+
+        {% endif %}
+
+
+        {% if request.args.get('registered') %}
+
+        <div class="success-message">
+
+            Account created successfully.
+            Please login.
+
+        </div>
+
+        {% endif %}
+
+
+        <form method="POST"
+              action="/login">
+
+
+            <div class="input-group">
+
+                <label>
+                    Email Address
+                </label>
+
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="Enter your email"
+                    required
+                >
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label>
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="Enter your password"
+                    required
+                >
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="auth-button"
+            >
+
+                Login
+
+            </button>
+
+
+        </form>
+
+
+        <p class="auth-footer">
+
+            Don't have an account?
+
+            <a href="/signup">
+                Sign Up
+            </a>
+
+        </p>
+
+
+    </div>
+
+
+</div>
+
+
+</body>
+
+</html>

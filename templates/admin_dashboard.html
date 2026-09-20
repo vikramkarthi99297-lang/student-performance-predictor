@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Admin Dashboard
+    </title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+
+<body>
+
+
+<nav class="navbar">
+
+    <div class="logo">
+        StudentAI Admin
+    </div>
+
+
+    <div class="nav-user">
+
+        <span>
+            👨‍💼 {{ name }}
+        </span>
+
+        <a href="/logout">
+            Logout
+        </a>
+
+    </div>
+
+</nav>
+
+
+
+<div class="container">
+
+
+    <div class="dashboard-welcome">
+
+        <h1>
+            Admin Dashboard
+        </h1>
+
+        <p>
+            Student Performance Management System
+        </p>
+
+    </div>
+
+
+
+    <!-- STATISTICS -->
+
+    <div class="stats-grid">
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                👨‍🎓
+            </div>
+
+            <h3>
+                Registered Students
+            </h3>
+
+            <strong>
+                {{ total_students }}
+            </strong>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                📊
+            </div>
+
+            <h3>
+                Total Predictions
+            </h3>
+
+            <strong>
+                {{ total_predictions }}
+            </strong>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                ✅
+            </div>
+
+            <h3>
+                Pass
+            </h3>
+
+            <strong>
+                {{ total_pass }}
+            </strong>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                ❌
+            </div>
+
+            <h3>
+                Fail
+            </h3>
+
+            <strong>
+                {{ total_fail }}
+            </strong>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- ADMIN ACTIONS -->
+
+    <div class="admin-actions">
+
+
+        <a
+            href="/records"
+            class="admin-action-card"
+        >
+
+            <span>
+                📋
+            </span>
+
+            <h3>
+                Student Records
+            </h3>
+
+            <p>
+                View all registered student predictions.
+            </p>
+
+        </a>
+
+
+        <a
+            href="/"
+            class="admin-action-card"
+        >
+
+            <span>
+                🤖
+            </span>
+
+            <h3>
+                Prediction
+            </h3>
+
+            <p>
+                Make a new student performance prediction.
+            </p>
+
+        </a>
+
+
+    </div>
+
+
+
+    <!-- MODEL -->
+
+    <div class="model-info">
+
+        <h2>
+            Machine Learning Model
+        </h2>
+
+        <p>
+            Algorithm: Decision Tree Classifier
+        </p>
+
+        <p>
+            Model Accuracy:
+            <strong>
+                {{ accuracy }}%
+            </strong>
+        </p>
+
+    </div>
+
+
+</div>
+
+
+</body>
+
+</html>

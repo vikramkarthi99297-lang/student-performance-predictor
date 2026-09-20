@@ -13,7 +13,7 @@ data = pd.read_csv("student_data.csv")
 
 
 # ============================================
-# INPUT FEATURES
+# FEATURES
 # ============================================
 
 X = data[
@@ -35,7 +35,7 @@ y = data["result"]
 
 
 # ============================================
-# SPLIT DATA
+# TRAIN TEST SPLIT
 # ============================================
 
 X_train, X_test, y_train, y_test = train_test_split(
@@ -59,21 +59,33 @@ model = DecisionTreeClassifier(
 # TRAIN MODEL
 # ============================================
 
-model.fit(X_train, y_train)
+model.fit(
+    X_train,
+    y_train
+)
 
 
 # ============================================
 # TEST MODEL
 # ============================================
 
-y_pred = model.predict(X_test)
+y_pred = model.predict(
+    X_test
+)
 
 
 # ============================================
 # ACCURACY
 # ============================================
 
-accuracy = accuracy_score(y_test, y_pred)
+accuracy = accuracy_score(
+    y_test,
+    y_pred
+)
 
-print("Model trained successfully!")
-print("Model Accuracy:", round(accuracy * 100, 2), "%")
+
+print(
+    "Model Accuracy:",
+    round(accuracy * 100, 2),
+    "%"
+)
