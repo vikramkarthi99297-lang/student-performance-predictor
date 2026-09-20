@@ -8,6 +8,7 @@ from flask import (
     jsonify
 )
 import os
+
 import pandas as pd
 import mysql.connector
 
@@ -27,7 +28,10 @@ from sklearn.metrics import accuracy_score
 
 app = Flask(__name__)
 
-app.secret_key = "student-performance-secret-key"
+app.secret_key = os.environ.get(
+    "SECRET_KEY",
+    "student-performance-local-secret"
+    )
 
 
 # ==================================================
@@ -36,30 +40,44 @@ app.secret_key = "student-performance-secret-key"
 
 DB_CONFIG = {
 
-    "host": "localhost",
+    "host": os.environ.get(
+        "DB_HOST",
+        "localhost"
+    ),
 
-    "user": "root",
+    "user": os.environ.get(
+        "DB_USER",
+        "root"
+    ),
 
-    "password": "root",
+    "password": os.environ.get(
+        "DB_PASSWORD",
+        "root"
+    ),
 
-    "database": "student_performance"
+    "database": os.environ.get(
+        "DB_NAME",
+        "student_performance"
+    )
 
 }
 
 
 # ==================================================
-# DATABASE CONNECTION
-# ==================================================
-
-
+# DATABASE CONNECTION# ==================================================
 
 def get_db_connection():
+
     return mysql.connector.connect(
-        host=os.environ.get("DB_HOST"),
-        port=int(os.environ.get("DB_PORT", "3306")),
-        user=os.environ.get("DB_USER"),
-        password=os.environ.get("DB_PASSWORD"),
-        database=os.environ.get("DB_NAME")
+
+        host=DB_CONFIG["host"],
+
+        user=DB_CONFIG["user"],
+
+        password=DB_CONFIG["password"],
+
+        database=DB_CONFIG["database"]
+
     )
 
 
