@@ -7,7 +7,7 @@ from flask import (
     session,
     jsonify
 )
-
+import os
 import pandas as pd
 import mysql.connector
 
@@ -51,18 +51,15 @@ DB_CONFIG = {
 # DATABASE CONNECTION
 # ==================================================
 
+
+
 def get_db_connection():
-
     return mysql.connector.connect(
-
-        host=DB_CONFIG["localhost"],
-
-        user=DB_CONFIG["root"],
-
-        password=DB_CONFIG["root"],
-
-        database=DB_CONFIG["student_performance"]
-
+        host=os.environ.get("DB_HOST"),
+        port=int(os.environ.get("DB_PORT", "3306")),
+        user=os.environ.get("DB_USER"),
+        password=os.environ.get("DB_PASSWORD"),
+        database=os.environ.get("DB_NAME")
     )
 
 
