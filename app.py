@@ -55,13 +55,13 @@ def get_db_connection():
 
     return mysql.connector.connect(
 
-        host=DB_CONFIG["host"],
+        host=DB_CONFIG["localhost"],
 
-        user=DB_CONFIG["user"],
+        user=DB_CONFIG["root"],
 
-        password=DB_CONFIG["password"],
+        password=DB_CONFIG["root"],
 
-        database=DB_CONFIG["database"]
+        database=DB_CONFIG["student_performance"]
 
     )
 
